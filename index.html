@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Developer Project Hub - Plan, document and manage your software projects."
+    />
+
+    <title>Developer Project Hub</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="CSS/style.css" />
+
+    <!-- JavaScript -->
+
+    <script src="js/database.js" defer></script>
+    <script src="js/planning.js" defer></script>
+    <script src="js/requirements.js" defer></script>
+    <script src="js/backup.js" defer></script>
+    <script src="js/zip-backup.js" defer></script>
+    <script src="js/pdf.js" defer></script>
+    <script src="js/structure.js" defer></script>
+    <script src="js/modeling.js" defer></script>
+    <script src="js/storage.js" defer></script>
+    <script src="js/technologies.js" defer></script>
+    <script src="js/logic.js" defer></script>
+    <script src="js/uiux.js" defer></script>
+    <script src="js/development.js" defer></script>
+    <script src="js/traceability.js" defer></script>
+    <script src="js/integrity.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/ui.js" defer></script>
+  </head>
+
+  <body>
+    <div class="app-layout">
+      <button id="mobile-nav-backdrop" class="mobile-nav-backdrop" type="button" aria-label="Close navigation" hidden></button>
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="main-sidebar">
+        <div class="sidebar-header">
+          <div class="brand-icon">D</div>
+
+          <div class="brand-info">
+            <h1>Developer Hub</h1>
+            <p>Project Workspace</p>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <button class="nav-link active" data-view="dashboard">
+            <span>Dashboard</span>
+          </button>
+
+          <button class="nav-link" data-view="projects">
+            <span>My Projects</span>
+          </button>
+
+          <button class="nav-link" data-view="resources">
+            <span>Resources</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <p>Developer Project Hub</p>
+          <small>Version 1.0</small>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div class="main-wrapper">
+        <header class="topbar">
+          <button id="mobile-menu-toggle" class="btn btn-secondary mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="main-sidebar" aria-expanded="false">☰</button>
+          <div class="topbar-title">
+            <h2 id="page-title">Dashboard</h2>
+            <p>Plan your ideas. Build with confidence.</p>
+          </div>
+
+          <div class="topbar-actions">
+            <button id="theme-toggle" class="btn btn-secondary" type="button">
+              Toggle Theme
+            </button>
+
+            <button id="new-project-btn" class="btn btn-primary" type="button">
+              + New Project
+            </button>
+          </div>
+        </header>
+
+        <main class="main-content">
+          <!-- DASHBOARD VIEW -->
+          <section id="dashboard-view" class="view active-view">
+            <div class="welcome-section">
+              <h2>Welcome to your workspace</h2>
+              <p>
+                Organize your ideas, document technical decisions, and track
+                your development journey.
+              </p>
+            </div>
+
+            <div class="stats-grid">
+              <article class="stat-card">
+                <p>Total Projects</p>
+                <h3 id="total-projects">0</h3>
+              </article>
+
+              <article class="stat-card">
+                <p>In Progress</p>
+                <h3 id="active-projects">0</h3>
+              </article>
+
+              <article class="stat-card">
+                <p>Completed</p>
+                <h3 id="completed-projects">0</h3>
+              </article>
+            </div>
+
+            <section id="dashboard-insights" aria-label="Project progress and health"></section>
+
+            <div class="section-header">
+              <div>
+                <h2>Recent Projects</h2>
+                <p>Continue where you left off.</p>
+              </div>
+            </div>
+
+            <div id="recent-projects" class="projects-grid">
+              <!-- Project cards will be rendered by JavaScript -->
+            </div>
+          </section>
+
+          <!-- PROJECTS VIEW -->
+          <section id="projects-view" class="view" hidden>
+            <div class="section-header">
+              <div>
+                <h2>My Projects</h2>
+                <p>All your software projects in one place.</p>
+              </div>
+            </div>
+
+            <div class="projects-toolbar">
+              <input
+                type="search"
+                id="project-search"
+                class="form-input"
+                placeholder="Search projects..."
+                aria-label="Search projects"
+              />
+
+              <select id="project-filter" class="form-input">
+                <option value="all">All Statuses</option>
+                <option value="planning">Planning</option>
+                <option value="in-progress">In Progress</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+
+            <div id="all-projects" class="projects-grid">
+              <!-- Project cards will be rendered by JavaScript -->
+            </div>
+          </section>
+
+          <!-- RESOURCES VIEW -->
+          <section id="resources-view" class="view" hidden>
+            <div class="section-header">
+              <div>
+                <h2>Resources</h2>
+                <p>Keep your useful development references organized.</p>
+              </div>
+            </div>
+
+            <div class="empty-state">
+              <h3>Your resource library</h3>
+              <p>
+                Soon you will be able to save useful links, documents, diagrams
+                and development references.
+              </p>
+            </div>
+          </section>
+
+          <!-- PROJECT WORKSPACE VIEW -->
+          <section id="workspace-view" class="view" hidden>
+            <div class="workspace-heading">
+              <button
+                id="back-to-projects"
+                class="btn btn-secondary"
+                type="button"
+              >
+                ← Back to Projects
+              </button>
+
+              <div>
+                <h2 id="workspace-project-name">Project Name</h2>
+                <p id="workspace-project-description"></p>
+              </div>
+            </div>
+
+            <div class="workspace-layout">
+              <!-- PLANNING STEPS -->
+              <aside class="planning-sidebar">
+                <h3>Planning Steps</h3>
+
+                <nav id="planning-navigation" aria-label="Project planning">
+                  <!-- Planning steps will be rendered by JavaScript -->
+                </nav>
+              </aside>
+
+              <!-- PLANNING CONTENT -->
+              <div class="planning-content">
+                <div id="planning-step-content">
+                  <!-- Guided planning questions will appear here -->
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- NEW PROJECT MODAL -->
+    <div id="project-modal" class="modal-overlay" hidden>
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <div class="modal-header">
+          <h2 id="modal-title">Create New Project</h2>
+
+          <button
+            id="close-modal"
+            class="icon-button"
+            type="button"
+            aria-label="Close dialog"
+          >
+            ×
+          </button>
+        </div>
+
+        <form id="project-form">
+          <div class="form-group">
+            <label for="project-name">Project Name *</label>
+            <input
+              id="project-name"
+              class="form-input"
+              type="text"
+              maxlength="100"
+              placeholder="e.g. My Finance Hub"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="project-description">Description</label>
+            <textarea
+              id="project-description"
+              class="form-input"
+              rows="4"
+              placeholder="What are you planning to build?"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="project-status">Status</label>
+            <select id="project-status" class="form-input">
+              <option value="planning">Planning</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="modal-actions">
+            <button id="cancel-project" class="btn btn-secondary" type="button">
+              Cancel
+            </button>
+
+            <button class="btn btn-primary" type="submit">
+              Create Project
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
